@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="1.0" xmlns="http://java.sun.com/xml/ns/persistence/orm" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm 
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd ">
+
+		<named-query name="select.sotck.by.product">
+			<query>
+				SELECT s FROM Stock s WHERE 
+				 	s.product.idProduct = :ID_PRODUCT 
+					AND s.inStock = (
+				 						SELECT MIN(s2.inStock) FROM Stock s2
+										WHERE s2.idStock = s.idStock AND s2.value > 0
+					)
+			</query>
+		</named-query>
+		<named-query name="select.count.sotck.by.product">
+			<query>
+				SELECT SUM(s.value) FROM Stock s WHERE 
+				 	s.product.idProduct = :ID_PRODUCT AND s.value > 0
+			</query>
+		</named-query>
+		
+		<named-query name="select.stock.by.keys">
+			<query>
+				SELECT s FROM Stock s WHERE s.idStock IN :KEYS
+			</query>
+		</named-query>
+		
+		<named-query name="select.produc.by.id">
+			<query>
+				SELECT p FROM Product p WHERE p.idProduct = :ID_PRODUCT
+			</query>
+		</named-query>
+			
+		<named-query name="select.products.by.name">
+			<query>
+				SELECT p FROM Product p WHERE p.productName = :PRODUCT_NAME
+			</query>
+		</named-query>
+		
+		<named-query name="select.products.like.name">
+			<query>
+				SELECT p FROM Product p WHERE p.productName like :PRODUCT_NAME
+			</query>
+		</named-query>
+		
+</entity-mappings>

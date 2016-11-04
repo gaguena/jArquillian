@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC
+        "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN"
+        "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+ 
+       <jdbc-resource pool-name="ArquillianEmbeddedOraclePool" jndi-name="bob.datasource"  enabled="true"/>
+      
+      
+       <jdbc-connection-pool name="ArquillianEmbeddedOraclePool"
+             res-type="javax.sql.DataSource" datasource-classname="oracle.jdbc.pool.OracleDataSource">
+             <property name="URL" value="jdbc:oracle:thin:@10.64.114.92:1521/BDTDBOB" />
+             <property name="user" value="starstausr" />
+             <property name="password" value="starstausr" />
+             <!-- Conexão base de LAB -->
+       <!-- <property name="URL" value="jdbc:oracle:thin:@10.64.114.92:1521/BDTDBOBF" />
+             <property name="user" value="star" />
+             <property name="password" value="star" />  -->
+ 
+             <!-- Conexão base de TI -->
+       <!-- <property name="URL" value="jdbc:oracle:thin:@10.64.113.15:1521/BDTQBOB" />
+             <property name="user" value="starstausr" />
+             <property name="password" value="starstausr" />  -->
+       </jdbc-connection-pool>
+</resources>

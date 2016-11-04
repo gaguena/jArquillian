@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+
+	<jdbc-resource pool-name="ArquillianEmbeddedOraclePool"
+		jndi-name="oracleDS" enabled="true" />
+
+	<jdbc-connection-pool name="ArquillianEmbeddedOraclePool"
+		res-type="javax.sql.DataSource" datasource-classname="org.postgresql.ds.PGSimpleDataSource">
+		<property name="databaseName" value="JARQUILLIAN" />
+		<property name="PortNumber" value="5432" />
+		<property name="ServerName" value="127.0.0.1" />
+		<property name="user" value="postgres" />
+		<property name="password" value="Brasil04" />
+	</jdbc-connection-pool>
+</resources>

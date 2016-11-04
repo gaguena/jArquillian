@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>jArquillian</artifactId>
+		<groupId>com.gaguena</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>jArquillian-ear</artifactId>
+	<packaging>ear</packaging>
+	<name>jArquillian EAR module</name>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<version>6</version>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+						</manifest>
+					</archive>
+					<modules>
+						<webModule>
+							<groupId>com.gaguena</groupId>
+							<artifactId>jArquillian-web</artifactId>
+							<contextRoot>jArquillian</contextRoot>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+	<dependency>
+			<groupId>com.gaguena</groupId>
+			<artifactId>jArquillian-client</artifactId>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>com.gaguena</groupId>
+			<artifactId>jArquillian-web</artifactId>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>com.gaguena</groupId>
+			<artifactId>jArquillian-ejb</artifactId>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-classic</artifactId>
+		</dependency>	
+	</dependencies>
+</project>
