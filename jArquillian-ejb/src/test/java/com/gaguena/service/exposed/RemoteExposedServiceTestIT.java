@@ -5,14 +5,13 @@
 package com.gaguena.service.exposed;
 
 import javax.ejb.EJB;
-import javax.naming.NamingException;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.persistence.ApplyScriptAfter;
 import org.jboss.arquillian.persistence.ApplyScriptBefore;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Before;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -29,6 +28,7 @@ import com.gaguena.service.RemoteExposedService;
 public class RemoteExposedServiceTestIT {
 
 
+	private static final Long PRICE_ID = 1L;
 	/**
 	 * Inject RemoteExposedService
 	 */
@@ -36,25 +36,22 @@ public class RemoteExposedServiceTestIT {
 	private RemoteExposedService remoteExposedService;
 
 	/**
-	 * @throws NamingException
-	 * 
+	 * Teste para recuperar ProductPrice pelo seu Id.
 	 */
 	@Test
 	@ApplyScriptBefore(value = "scripts/price/INSERT_PRODUCT_PRICE.sql")
 	@ApplyScriptAfter(value="scripts/price/DELETE_PRODUCT_PRICE.sql")
-	public void findActivePriceByTest() throws NamingException {
-		ProductPrice price = this.remoteExposedService.findActivePriceBy(1L);
-		System.out.println(price);
+	public void findActivePriceByTest(){
+		ProductPrice price = this.remoteExposedService.findActivePriceBy(PRICE_ID);
+		Assert.assertNotNull(price);
+		Assert.assertEquals(PRICE_ID, price.getIdProductPrice());
 	}
+
 
 	/**
-	 * 
+	 * Deploy for Arquillian.
+	 * @return
 	 */
-	@Before
-	public void findProductTest() {
-		System.out.println("TESTE");
-	}
-
 	@Deployment
 	public static WebArchive createDeployment() {
 		return JArquillianConfigTest.createDeployment();

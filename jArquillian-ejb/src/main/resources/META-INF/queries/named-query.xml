@@ -45,4 +45,12 @@
 			</query>
 		</named-query>
 		
+		<named-query name="select.product.price.active.by.idProduct">
+			<query>
+				SELECT pp FROM ProductPrice pp WHERE pp.product.idProduct = :ID_PRODUCT
+				AND pp.status = 'ACTIVE'
+			</query>
+		</named-query>
+		
+		
 </entity-mappings>
